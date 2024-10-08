@@ -83,7 +83,7 @@ const expenseRoutes = require("./routes/expenses");
 app.use("/api/expenses", expenseRoutes);
 
 // Start the Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
