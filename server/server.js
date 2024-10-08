@@ -90,7 +90,7 @@ app.use("/api/expenses", expenseRoutes);
 
 // Catch-all handler to serve React's index.html for unknown routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
 
 // Start the Server
