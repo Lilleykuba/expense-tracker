@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors()); // Enable CORS for cross-origin requests
 app.use(express.json()); // Parse incoming JSON requests
-app.use(express.static(path.join(__dirname, "../client/build"))); // Serve static files from React build
+app.use(express.static(path.resolve(__dirname, "../client/build"))); // Serve static files from React build
 
 // MongoDB Connection
 mongoose
