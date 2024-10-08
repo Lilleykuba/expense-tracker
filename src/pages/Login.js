@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "http://0.0.0.0:5000/api/auth/login",
         formData
       );
       const token = response.data.token;
