@@ -21,9 +21,9 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // User Model
-const User = require("./server/models/User");
+const User = require("./models/User");
 
-const authRoutes = require("./server/routes/auth");
+const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);
 
 // Authentication Routes
@@ -85,7 +85,7 @@ app.post("/api/auth/login", async (req, res) => {
 });
 
 // Expense Routes
-const expenseRoutes = require("./server/routes/expenses");
+const expenseRoutes = require("./routes/expenses");
 app.use("/api/expenses", expenseRoutes);
 
 // Catch-all handler to serve React's index.html for unknown routes
