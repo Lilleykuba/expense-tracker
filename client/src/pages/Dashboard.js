@@ -100,14 +100,18 @@ const Dashboard = () => {
                     Your Expenses
                   </Typography>
                   <ul className="expense-list">
-                    {expenses.map((expense) => (
-                      <li key={expense._id} className="expense-item">
-                        <Typography variant="body1" className="expense-text">
-                          {expense.description} - ${expense.amount} (
-                          {expense.category})
-                        </Typography>
-                      </li>
-                    ))}
+                    {expenses && Array.isArray(expenses) ? (
+                      expenses.map((expense) => (
+                        <li key={expense._id} className="expense-item">
+                          <Typography variant="body1" className="expense-text">
+                            {expense.description} - ${expense.amount} (
+                            {expense.category})
+                          </Typography>
+                        </li>
+                      ))
+                    ) : (
+                      <p>No expenses to display</p>
+                    )}
                   </ul>
                 </CardContent>
               </Card>
