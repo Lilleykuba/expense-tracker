@@ -20,7 +20,7 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "https://camo-budget.onrender.com/api/api/auth/register",
+        "https://camo-budget.onrender.com/api/auth/register",
         formData
       );
       alert("Registration successful");
