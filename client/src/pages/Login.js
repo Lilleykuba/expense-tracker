@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://camo-budget.onrender.com/api/api/auth/login",
+        "https://camo-budget.onrender.com/api/auth/login",
         formData
       );
       const token = response.data.token;
