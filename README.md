@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+# Expense Tracker Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This project is a full-stack web application for managing and tracking personal expenses. It allows users to add expenses, set budget limits, and visualize their spending trends through interactive charts. The application is built using **React** on the front-end and **Node.js/Express** for the back-end, with **MongoDB** as the database to store expense records and budget data.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **User Authentication**: Secure login system for managing multiple user accounts.
+- **Expense Management**: Add, edit, and delete expense entries, each with a description, amount, category, and date.
+- **Budget Settings**: Set and adjust budgets for various categories to keep your finances on track.
+- **Data Visualization**:
+  - **Expense Distribution Chart**: Visual representation of expenses by category.
+  - **Expense Trend Chart**: Track expenses over time.
+- **Responsive Design**: Designed to work on both desktop and mobile devices for easy access anywhere.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Front-end**: React, Material-UI for styling
+- **Back-end**: Node.js, Express.js
+- **Database**: MongoDB
+- **Charts**: Chart.js for visualizing expense data
+- **State Management**: React hooks and context
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To set up and run the project locally, follow the steps below:
 
-### `npm run build`
+1. **Clone the repository**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   git clone https://github.com/your-username/expense-tracker.git
+   cd expense-tracker
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Install dependencies for both the server and client**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   # Install back-end dependencies
+   cd server
+   npm install
 
-### `npm run eject`
+   # Install front-end dependencies
+   cd ../client
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Create a \*\***`.env`\***\* file** in the `server` directory with the following variables:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```env
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. **Run the server**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```bash
+   cd server
+   npm start
+   ```
 
-## Learn More
+5. **Run the client**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   cd ../client
+   npm start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+6. **Access the application**
+   Open your browser and navigate to `http://localhost:3000` to start using the Expense Tracker.
 
-### Code Splitting
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **client/**: Contains all the front-end code, including React components, pages, and styling.
+- **server/**: Contains all the back-end code, including API routes, authentication, and database models.
+- **components/**:
+  - **ExpenseForm**: Form to add new expenses.
+  - **BudgetSettings**: Component to set budget limits.
+  - **Charts**: Components to visualize expense data.
 
-### Analyzing the Bundle Size
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. **Register/Login**: Start by registering a new account or logging in with existing credentials.
+2. **Add Expenses**: Navigate to the dashboard and add your daily expenses.
+3. **Set Budgets**: Define budgets for different spending categories.
+4. **View Reports**: Visualize your spending with the provided charts to track where your money is going.
 
-### Making a Progressive Web App
+## Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Dashboard**: Shows overall spending, budget settings, and visual expense charts.
+- **Expense Form**: Easily add new expenses by filling in the form fields.
 
-### Advanced Configuration
+## Styling and UI
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The UI has been designed using **Material-UI** for a modern and responsive design. Cards, grids, and charts are styled to provide a clear overview of your financial health. Key colors are used to differentiate sections and emphasize important information.
 
-### Deployment
+## Future Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Recurring Expenses**: Add support for tracking recurring expenses automatically.
+- **Export Data**: Allow users to export expense data as CSV or Excel files.
+- **Notifications**: Notify users when they are nearing or exceeding their budget limits.
+- **Mobile App**: Develop a mobile version using React Native for easier access on mobile devices.
 
-### `npm run build` fails to minify
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contributions are welcome! Please fork the repository and submit a pull request for review.
+
+## License
+
+This project is open-source and available under the **MIT License**.
+
+## Contact
+
+For questions, suggestions, or issues, feel free to contact:
+
+- **Name**: Your Name
+- **Email**: [your.email@example.com](mailto:your.email@example.com)
+- **GitHub**: [your-username](https://github.com/your-username)
