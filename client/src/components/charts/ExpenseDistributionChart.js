@@ -5,6 +5,11 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ExpenseDistributionChart = ({ expenses }) => {
+  if (!Array.isArray(expenses)) {
+    console.error("Expenses is not an array:", expenses);
+    return <p>Unable to display chart: invalid data format.</p>;
+  }
+
   const categories = [...new Set(expenses.map((expense) => expense.category))];
   const categoryData = categories.map((category) =>
     expenses

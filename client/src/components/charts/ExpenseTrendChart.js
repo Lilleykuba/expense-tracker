@@ -22,6 +22,11 @@ ChartJS.register(
 );
 
 const ExpenseTrendChart = ({ expenses }) => {
+  if (!Array.isArray(expenses)) {
+    console.error("Expenses is not an array:", expenses);
+    return <p>Unable to display chart: invalid data format.</p>;
+  }
+
   const dates = [
     ...new Set(
       expenses.map((expense) => new Date(expense.date).toLocaleDateString())
