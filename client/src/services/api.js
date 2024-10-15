@@ -15,6 +15,19 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
+// Handle expired tokens (or unauthorized access)
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      // Remove invalid token and redirect to login
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
 // User Authentication APIs
 export const createUser = (userData) => API.post("/auth/register", userData);
 export const loginUser = (userData) => API.post("/auth/login", userData);
