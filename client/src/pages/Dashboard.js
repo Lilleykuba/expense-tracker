@@ -22,11 +22,17 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1976d2",
+      main: "#1976d2", // Customize primary color
     },
     secondary: {
-      main: "#dc004e",
+      main: "#dc004e", // Customize secondary color
     },
+    background: {
+      default: "#400080", // Customize default background color
+    },
+  },
+  typography: {
+    fontFamily: "Roboto, Arial, sans-serif", // Customize font family
   },
 });
 
