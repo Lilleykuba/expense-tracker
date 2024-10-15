@@ -18,7 +18,6 @@ import {
   Button,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import "../styles/Dashboard.css";
 
 const theme = createTheme({
   palette: {
