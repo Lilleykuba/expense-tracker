@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import {
+  Container,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Card,
+  CardContent,
+} from "@mui/material";
 
 const BudgetSettings = () => {
   const [budget, setBudget] = useState(0);
@@ -13,24 +22,45 @@ const BudgetSettings = () => {
   };
 
   return (
-    <div>
-      <h2>Set Your Budget</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          placeholder="Budget Amount"
-          value={budget}
-          onChange={(e) => setBudget(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        />
-        <button type="submit">Save Budget</button>
-      </form>
-    </div>
+    <Container maxWidth="sm">
+      <Card>
+        <CardContent>
+          <Typography variant="h5" component="div" align="center" gutterBottom>
+            Set Your Budget
+          </Typography>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Budget Amount"
+              value={budget}
+              onChange={(e) => setBudget(e.target.value)}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              type="text"
+              label="Category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              margin="normal"
+              required
+            />
+            <Box mt={3}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+              >
+                Save Budget
+              </Button>
+            </Box>
+          </form>
+        </CardContent>
+      </Card>
+    </Container>
   );
 };
 

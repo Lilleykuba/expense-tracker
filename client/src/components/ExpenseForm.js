@@ -1,5 +1,14 @@
 import React, { useState } from "react";
 import { createExpense } from "../services/api";
+import {
+  Container,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Card,
+  CardContent,
+} from "@mui/material";
 
 const ExpenseForm = () => {
   const [formData, setFormData] = useState({
@@ -42,44 +51,70 @@ const ExpenseForm = () => {
   };
 
   return (
-    <div>
-      <h2>Add New Expense</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="description"
-          placeholder="Description"
-          value={formData.description}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="number"
-          name="amount"
-          placeholder="Amount"
-          value={formData.amount}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="category"
-          placeholder="Category"
-          value={formData.category}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="date"
-          name="date"
-          placeholder="Date"
-          value={formData.date}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Add Expense</button>
-      </form>
-    </div>
+    <Container maxWidth="sm">
+      <Card>
+        <CardContent>
+          <Typography variant="h5" component="div" align="center" gutterBottom>
+            Add New Expense
+          </Typography>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              fullWidth
+              name="description"
+              label="Description"
+              placeholder="Description"
+              value={formData.description}
+              onChange={handleChange}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              name="amount"
+              type="number"
+              label="Amount"
+              placeholder="Amount"
+              value={formData.amount}
+              onChange={handleChange}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              name="category"
+              label="Category"
+              placeholder="Category"
+              value={formData.category}
+              onChange={handleChange}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              name="date"
+              type="date"
+              label="Date"
+              placeholder="Date"
+              value={formData.date}
+              onChange={handleChange}
+              margin="normal"
+              required
+              InputLabelProps={{ shrink: true }}
+            />
+            <Box mt={3}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+              >
+                Add Expense
+              </Button>
+            </Box>
+          </form>
+        </CardContent>
+      </Card>
+    </Container>
   );
 };
 
