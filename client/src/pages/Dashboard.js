@@ -13,8 +13,23 @@ import {
   Typography,
   Box,
   CircularProgress,
+  AppBar,
+  Toolbar,
+  Button,
 } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../styles/Dashboard.css";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#1976d2",
+    },
+    secondary: {
+      main: "#dc004e",
+    },
+  },
+});
 
 const Dashboard = () => {
   const [expenses, setExpenses] = useState([]);
@@ -43,119 +58,137 @@ const Dashboard = () => {
   }, [navigate]);
 
   return (
-    <Container maxWidth="lg" className="dashboard-container">
-      <Typography
-        variant="h3"
-        component="h1"
-        align="center"
-        gutterBottom
-        className="dashboard-title"
-      >
-        Expense Tracker Dashboard
-      </Typography>
-      <Grid container spacing={4}>
-        <Grid item xs={12}>
-          <Card className="dashboard-card no-background">
-            <CardContent>
-              <Typography variant="h5" component="div" className="card-title">
-                Add a New Expense
-              </Typography>
-              <ExpenseForm />
-            </CardContent>
-          </Card>
-        </Grid>
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="lg" className="dashboard-container">
+        <AppBar position="static" color="primary">
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Expense Tracker Dashboard
+            </Typography>
+            <Button color="inherit" onClick={() => navigate("/login")}>
+              Logout
+            </Button>
+          </Toolbar>
+        </AppBar>
 
-        <Grid item xs={12}>
-          <Card className="dashboard-card no-background">
-            <CardContent>
-              <Typography variant="h5" component="div" className="card-title">
-                Set Your Budget
-              </Typography>
-              <BudgetSettings />
-            </CardContent>
-          </Card>
-        </Grid>
+        <Typography
+          variant="h3"
+          component="h1"
+          align="center"
+          gutterBottom
+          className="dashboard-title"
+          sx={{ mt: 4 }}
+        >
+          Expense Tracker Dashboard
+        </Typography>
 
-        <Grid item xs={12}>
-          {loading ? (
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              height="100%"
-            >
-              <CircularProgress color="secondary" />
-            </Box>
-          ) : (
-            <>
-              <Card className="dashboard-card no-background">
-                <CardContent>
-                  <Typography
-                    variant="h4"
-                    component="div"
-                    align="center"
-                    gutterBottom
-                    className="card-title"
-                  >
-                    Your Expenses
-                  </Typography>
-                  <ul className="expense-list">
-                    {expenses && Array.isArray(expenses) ? (
-                      expenses.map((expense) => (
-                        <li key={expense._id} className="expense-item">
-                          <Typography variant="body1" className="expense-text">
-                            {expense.description} - ${expense.amount} (
-                            {expense.category})
-                          </Typography>
-                        </li>
-                      ))
-                    ) : (
-                      <p>No expenses to display</p>
-                    )}
-                  </ul>
-                </CardContent>
-              </Card>
+        <Grid container spacing={4} sx={{ mt: 2 }}>
+          <Grid item xs={12}>
+            <Card className="dashboard-card no-background">
+              <CardContent>
+                <Typography variant="h5" component="div" className="card-title">
+                  Add a New Expense
+                </Typography>
+                <ExpenseForm />
+              </CardContent>
+            </Card>
+          </Grid>
 
-              <Grid container spacing={4} mt={4}>
-                <Grid item xs={12} md={6}>
-                  <Card className="dashboard-card no-background">
-                    <CardContent>
-                      <Typography
-                        variant="h6"
-                        align="center"
-                        className="card-title"
-                      >
-                        Expense Distribution by Category
-                      </Typography>
-                      <Box mt={2}>
-                        <ExpenseDistributionChart expenses={expenses} />
-                      </Box>
-                    </CardContent>
-                  </Card>
+          <Grid item xs={12}>
+            <Card className="dashboard-card no-background">
+              <CardContent>
+                <Typography variant="h5" component="div" className="card-title">
+                  Set Your Budget
+                </Typography>
+                <BudgetSettings />
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12}>
+            {loading ? (
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                height="100%"
+              >
+                <CircularProgress color="secondary" />
+              </Box>
+            ) : (
+              <>
+                <Card className="dashboard-card no-background">
+                  <CardContent>
+                    <Typography
+                      variant="h4"
+                      component="div"
+                      align="center"
+                      gutterBottom
+                      className="card-title"
+                    >
+                      Your Expenses
+                    </Typography>
+                    <ul className="expense-list">
+                      {expenses && Array.isArray(expenses) ? (
+                        expenses.map((expense) => (
+                          <li key={expense._id} className="expense-item">
+                            <Typography
+                              variant="body1"
+                              className="expense-text"
+                            >
+                              {expense.description} - ${expense.amount} (
+                              {expense.category})
+                            </Typography>
+                          </li>
+                        ))
+                      ) : (
+                        <p>No expenses to display</p>
+                      )}
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                <Grid container spacing={4} mt={4}>
+                  <Grid item xs={12} md={6}>
+                    <Card className="dashboard-card no-background">
+                      <CardContent>
+                        <Typography
+                          variant="h6"
+                          align="center"
+                          className="card-title"
+                        >
+                          Expense Distribution by Category
+                        </Typography>
+                        <Box mt={2}>
+                          <ExpenseDistributionChart expenses={expenses} />
+                        </Box>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+
+                  <Grid item xs={12} md={6}>
+                    <Card className="dashboard-card no-background">
+                      <CardContent>
+                        <Typography
+                          variant="h6"
+                          align="center"
+                          className="card-title"
+                        >
+                          Expense Trend Over Time
+                        </Typography>
+                        <Box mt={2}>
+                          <ExpenseTrendChart expenses={expenses} />
+                        </Box>
+                      </CardContent>
+                    </Card>
+                  </Grid>
                 </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <Card className="dashboard-card no-background">
-                    <CardContent>
-                      <Typography
-                        variant="h6"
-                        align="center"
-                        className="card-title"
-                      >
-                        Expense Trend Over Time
-                      </Typography>
-                      <Box mt={2}>
-                        <ExpenseTrendChart expenses={expenses} />
-                      </Box>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              </Grid>
-            </>
-          )}
+              </>
+            )}
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </ThemeProvider>
   );
 };
 
