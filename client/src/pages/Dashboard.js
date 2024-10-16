@@ -16,29 +16,16 @@ import {
   AppBar,
   Toolbar,
   Button,
+  Switch,
+  FormControlLabel,
+  CssBaseline,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1976d2", // Customize primary color
-    },
-    secondary: {
-      main: "#dc004e", // Customize secondary color
-    },
-    background: {
-      default: "#400080", // Customize default background color
-    },
-  },
-  typography: {
-    fontFamily: "Roboto, Arial, sans-serif", // Customize font family
-  },
-});
 
 const Dashboard = () => {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,14 +49,43 @@ const Dashboard = () => {
     getExpenses();
   }, [navigate]);
 
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? "dark" : "light",
+      primary: {
+        main: "#1976d2",
+      },
+      secondary: {
+        main: "#dc004e",
+      },
+      background: {
+        default: darkMode ? "#121212" : "#f5f5f5",
+      },
+    },
+    typography: {
+      fontFamily: "Roboto, Arial, sans-serif",
+    },
+  });
+
+  const handleThemeChange = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Container maxWidth="lg" className="dashboard-container">
         <AppBar position="static" color="primary">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Expense Tracker Dashboard
             </Typography>
+            <FormControlLabel
+              control={
+                <Switch checked={darkMode} onChange={handleThemeChange} />
+              }
+              label="Dark Mode"
+            />
             <Button color="inherit" onClick={() => navigate("/login")}>
               Logout
             </Button>
